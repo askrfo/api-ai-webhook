@@ -20,6 +20,16 @@ restService.post('/hook', function (req, res) {
             if (requestBody.result) {
                 speech = '';
 
+                if (requestBody.result.action === '장치제어'){
+                    speech += '{result:{code:false, message:"장치 제어 입니다."}}';
+                } else if (requestBody.result.action == '배송문의') {
+                    speech += '{result:{code:false, message:"배송 문의 입니다."}}';
+                } else if (requestBody.result.action === 'FAQ') {
+                    speech += '{result:{code:false, message:"FAQ 입니다."}}';
+                } else {
+                    speech += '{result:{code:false, message:"알수 없는 요청 입니다."}}';
+                }
+/*
                 if (requestBody.result.fulfillment) {
                     speech += requestBody.result.fulfillment.speech;
                     speech += ' ';
@@ -29,6 +39,7 @@ restService.post('/hook', function (req, res) {
                     speech += 'action: ' + requestBody.result.action;
                 }
             }
+*/
         }
 
         console.log('result: ', speech);
