@@ -1,7 +1,7 @@
 {
   "name": "API.AI webhook test",
   "description": "API.AI webhook test",
-  "repository": "http://github.ebaykorea.com/jdkim/api-ai-webhook",
+  "repository": "https://github.com/threebears/api-ai-webhook",
   "logo": "",
   "keywords": ["api.ai", "natural language"]
 }
