@@ -61,13 +61,22 @@ restService.post('/hook', function (req, res) {
                                   console.log('result: ', speech);
                           
                           //speech = dataDelivery;
-
+                            if (dataDelivery) {
                                 return res.json({
-                                    speech: '배송',
-                                    displayText: dataDelivery,
+                                    speech: '원하시는 상품을 선택해 주세요',
+                                    displayText: '',
                                     source: 'api-ai-webhook',
                                     data: dataDelivery
                                 });
+                                
+                            } else {
+                                return res.json({
+                                    speech: '주문하신 상품이 없습니다',
+                                    displayText: '주문하신 상품이 없습니다',
+                                    source: 'api-ai-webhook',
+                                    data: dataDelivery
+                                });
+                            }
                           
                       });
                     }).end();
