@@ -19,6 +19,7 @@ restService.post('/hook', function (req, res) {
 
     try {
         var speech = 'empty speech';
+        var dataDelivery = '';
 
         if (req.body) {
             var requestBody = req.body;
@@ -51,18 +52,21 @@ restService.post('/hook', function (req, res) {
                       var serverData = '';
                       response.on('data', function (chunk) {
 
-                          speech += chunk;
+                          dataDelivery += chunk;
                       });
                       response.on('end', function () {
                         console.log("received server data:");
                         console.log(serverData);
                           
                                   console.log('result: ', speech);
+                          
+                          //speech = dataDelivery;
 
                                 return res.json({
-                                    speech: speech,
-                                    displayText: speech,
-                                    source: 'api-ai-webhook'
+                                    speech: '배송',
+                                    displayText: dataDelivery,
+                                    source: 'api-ai-webhook',
+                                    data: dataDelivery
                                 });
                           
                       });
