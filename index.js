@@ -27,26 +27,7 @@ restService.post('/hook', function (req, res) {
             if (requestBody.result) {
                 speech = '';
 
-                if (requestBody.result.action === '장치제어'){
-                    speech += '장치 제어 입니다.';
-                    
-                    return res.json({
-                                    speech: speech,
-                                    displayText: speech,
-                                    source: 'api-ai-webhook'
-                                });
-                    
-                } else if (requestBody.result.action === '인사') {
-                    speech += '인사';
-                    
-                    return res.json({
-                                    speech: speech,
-                                    displayText: speech,
-                                    source: 'api-ai-webhook'
-                                });
-                    
-                    
-                } else if (requestBody.result.action == '배송문의') {
+                if (requestBody.result.action == '배송문의') {
                     
                     http.request(options, function(response){
                       var serverData = '';
