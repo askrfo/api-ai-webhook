@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var http = require('https');
+
 var options = {
     hostname: 'ara-yahoo-weather.herokuapp.com',
     path: '/webhook'
@@ -26,18 +27,43 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action === '장치제어'){
                     speech += '장치 제어 입니다.';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+                    
                 } else if (requestBody.result.action === '인사') {
                     speech += '인사';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+                    
+                    
                 } else if (requestBody.result.action == '배송문의') {
                     
                     http.request(options, function(response){
                       var serverData = '';
                       response.on('data', function (chunk) {
-                        speech += chunk;
+
+                          speech += chunk;
                       });
                       response.on('end', function () {
                         console.log("received server data:");
                         console.log(serverData);
+                          
+                                  console.log('result: ', speech);
+
+                                return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+                          
                       });
                     }).end();
 
@@ -45,8 +71,22 @@ restService.post('/hook', function (req, res) {
                     
                 } else if (requestBody.result.action === 'FAQ') {
                     speech += 'FAQ 입니다.';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+                    
+                    
                 } else {
                     speech += '알수 없는 요청 입니다.';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
                 }
 /*
                 if (requestBody.result.fulfillment) {
@@ -62,13 +102,7 @@ restService.post('/hook', function (req, res) {
 
         }
 
-        console.log('result: ', speech);
 
-        return res.json({
-            speech: speech,
-            displayText: speech,
-            source: 'api-ai-webhook'
-        });
     } catch (err) {
         console.error("Can't process request", err);
 
