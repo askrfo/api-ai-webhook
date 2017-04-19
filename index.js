@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 var http = require('http');
 
 var options = {
-    hostname: 'liehacker.ddns.net:8889',
+    hostname: 'liehacker.ddns.net',
+    port: 8889,
     path: '/delivery2.php'
   };
  
