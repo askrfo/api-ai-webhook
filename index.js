@@ -2,11 +2,11 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-var http = require('https');
+var http = require('http');
 
 var options = {
-    hostname: 'ara-yahoo-weather.herokuapp.com',
-    path: '/webhook'
+    hostname: 'liehacker.ddns.net:8889',
+    path: '/delivery2.php'
   };
  
 const restService = express();
