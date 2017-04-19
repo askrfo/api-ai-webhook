@@ -2,8 +2,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
-
+var http = require('https');
+var options = {
+    hostname: 'ara-yahoo-weather.herokuapp.com',
+    path: '/webhook'
+  };
+ 
 const restService = express();
 restService.use(bodyParser.json());
 
@@ -21,13 +25,28 @@ restService.post('/hook', function (req, res) {
                 speech = '';
 
                 if (requestBody.result.action === '장치제어'){
-                    speech += '{result:{code:false, message:"장치 제어 입니다."}}';
+                    speech += '장치 제어 입니다.';
+                } else if (requestBody.result.action === '인사') {
+                    speech += '인사';
                 } else if (requestBody.result.action == '배송문의') {
-                    speech += '{result:{code:false, message:"배송 문의 입니다."}}';
+                    
+                    http.request(options, function(response){
+                      var serverData = '';
+                      response.on('data', function (chunk) {
+                        speech += chunk;
+                      });
+                      response.on('end', function () {
+                        console.log("received server data:");
+                        console.log(serverData);
+                      });
+                    }).end();
+
+                    
+                    
                 } else if (requestBody.result.action === 'FAQ') {
-                    speech += '{result:{code:false, message:"FAQ 입니다."}}';
+                    speech += 'FAQ 입니다.';
                 } else {
-                    speech += '{result:{code:false, message:"알수 없는 요청 입니다."}}';
+                    speech += '알수 없는 요청 입니다.';
                 }
 /*
                 if (requestBody.result.fulfillment) {
@@ -48,7 +67,7 @@ restService.post('/hook', function (req, res) {
         return res.json({
             speech: speech,
             displayText: speech,
-            source: 'apiai-webhook-sample'
+            source: 'api-ai-webhook'
         });
     } catch (err) {
         console.error("Can't process request", err);
