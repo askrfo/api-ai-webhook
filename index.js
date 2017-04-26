@@ -46,16 +46,16 @@ restService.post('/hook', function (req, res) {
                                 return res.json({
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
-                                    source: 'api-ai-webhook',
-                                    data: res.json(dataDelivery)
+                                    source: 'api-ai-webhook'
+                                    //data: res.json(dataDelivery)
                                 });
                                 
                             } else {
                                 return res.json({
                                     speech: '주문하신 상품이 없습니다',
                                     displayText: '주문하신 상품이 없습니다',
-                                    source: 'api-ai-webhook',
-                                    data: res.json(dataDelivery)
+                                    source: 'api-ai-webhook'
+                                    //data: res.json(dataDelivery)
                                 });
                             }
                           
@@ -92,8 +92,20 @@ restService.post('/hook', function (req, res) {
                     speech += 'action: ' + requestBody.result.action;
                 }
 */
+            } else {
+                return res.json({
+                                    speech: '2',
+                                    displayText: '',
+                                    source: 'api-ai-webhook'
+                                });
             }
 
+        } else {
+            return res.json({
+                                    speech: '3',
+                                    displayText: '',
+                                    source: 'api-ai-webhook'
+                                });
         }
 
 
