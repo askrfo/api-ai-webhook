@@ -45,7 +45,7 @@ restService.post('/hook', function (req, res) {
                                 return res.json({
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
-                                    source: 'api-ai-webhook'
+                                    source: 'api-ai-webhook',
                                     data: dataDelivery
                                 });
                                 
@@ -53,7 +53,7 @@ restService.post('/hook', function (req, res) {
                                 return res.json({
                                     speech: '주문하신 상품이 없습니다',
                                     displayText: '주문하신 상품이 없습니다',
-                                    source: 'api-ai-webhook'
+                                    source: 'api-ai-webhook',
                                     data: dataDelivery
                                 });
                             }
