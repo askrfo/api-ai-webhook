@@ -28,7 +28,7 @@ restService.post('/hook', function (req, res) {
                 speech = '';
 
                 if (requestBody.result.action == '배송문의') {
-                    
+                    /*
                     http.request(options, function(response){
                       var serverData = '';
                       response.on('data', function (chunk) {
@@ -62,7 +62,12 @@ restService.post('/hook', function (req, res) {
                       });
                     }).end();
 
-                    
+                    */
+                    return res.json({
+                                    speech: '주문하신 상품이 없습니다',
+                                    displayText: '주문하신 상품이 없습니다',
+                                    source: 'api-ai-webhook'
+                                });
                     
                 } else if (requestBody.result.action === 'FAQ') {
                     speech += 'FAQ 입니다.';
