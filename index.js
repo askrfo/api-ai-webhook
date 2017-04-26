@@ -18,14 +18,16 @@ restService.post('/hook', function (req, res) {
     console.log('hook request');
 
     try {
-       
+        var speech = 'empty speech';
+        var dataDelivery = '';
+
         if (req.body) {
             var requestBody = req.body;
 
             if (requestBody.result) {
                 speech = '';
 
-                if (requestBody.result.action === '배송문의') {
+                if (requestBody.result.action == '배송문의') {
                     
                     http.request(options, function(response){
                       var serverData = '';
@@ -61,6 +63,17 @@ restService.post('/hook', function (req, res) {
                     }).end();
 
                     
+                    
+                } else if (requestBody.result.action === 'FAQ') {
+                    speech += 'FAQ 입니다.';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+                    
+                    
                 } else {
                     speech += '알수 없는 요청 입니다.';
                     
@@ -70,14 +83,17 @@ restService.post('/hook', function (req, res) {
                                     source: 'api-ai-webhook'
                                 });
                 }
+/*
+                if (requestBody.result.fulfillment) {
+                    speech += requestBody.result.fulfillment.speech;
+                    speech += ' ';
+                }
+                if (requestBody.result.action) {
+                    speech += 'action: ' + requestBody.result.action;
+                }
+*/
             }
-        } else {
-            speech += '잘못 된 요청 입니다.';
-             return res.json({
-                                    speech: speech,
-                                    displayText: speech,
-                                    source: 'api-ai-webhook'
-                                });
+
         }
 
 
@@ -93,6 +109,6 @@ restService.post('/hook', function (req, res) {
     }
 });
 
-restService.listen((process.env.PORT || 5000), function () {
+restService.listen((process.env.PORT || 10000), function () {
     console.log("Server listening");
 });
