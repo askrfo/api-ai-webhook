@@ -7,7 +7,7 @@ var http = require('http');
 var options = {
     hostname: 'liehacker.ddns.net',
     port: 8889,
-    path: '/delivery.php'
+    path: '/delivery_ec.php'
   };
  
 const restService = express();
