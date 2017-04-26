@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 var http = require('http');
 
 var options = {
-    hostname: 'liehacker.ddns.net',
+    hostname: 'liehacker.ddns.net',
     port: 8889,
-    path: '/delivery_ec.php'
-  };
- 
+    path: '/delivery_ec.php'
+  };
+ 
 const restService = express();
 restService.use(bodyParser.json());
 
@@ -18,11 +18,67 @@ restService.post('/hook', function (req, res) {
     console.log('hook request');
 
     try {
-        return res.json({
+       
+        if (req.body) {
+            var requestBody = req.body;
+
+            if (requestBody.result) {
+                speech = '';
+
+                if (requestBody.result.action === '배송문의') {
+                    
+                    http.request(options, function(response){
+                      var serverData = '';
+                      response.on('data', function (chunk) {
+
+                          dataDelivery += chunk;
+                      });
+                      response.on('end', function () {
+                        console.log("received server data:");
+                        console.log(serverData);
+                          
+                                  console.log('result: ', speech);
+                          
+                          //speech = dataDelivery;
+                            if (dataDelivery) {
+                                return res.json({
+                                    speech: '원하시는 상품을 선택해 주세요',
+                                    displayText: '',
+                                    source: 'api-ai-webhook',
+                                    data: res.json(dataDelivery)
+                                });
+                                
+                            } else {
+                                return res.json({
                                     speech: '주문하신 상품이 없습니다',
                                     displayText: '주문하신 상품이 없습니다',
+                                    source: 'api-ai-webhook',
+                                    data: res.json(dataDelivery)
+                                });
+                            }
+                          
+                      });
+                    }).end();
+
+                    
+                } else {
+                    speech += '알수 없는 요청 입니다.';
+                    
+                    return res.json({
+                                    speech: speech,
+                                    displayText: speech,
                                     source: 'api-ai-webhook'
                                 });
+                }
+            }
+        } else {
+            speech += '잘못 된 요청 입니다.';
+             return res.json({
+                                    speech: speech,
+                                    displayText: speech,
+                                    source: 'api-ai-webhook'
+                                });
+        }
 
 
     } catch (err) {
