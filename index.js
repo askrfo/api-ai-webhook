@@ -45,8 +45,7 @@ restService.post('/hook', function (req, res) {
                                 return res.json({
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
-                                    source: 'api-ai-webhook',
-                                    data: JSON.parse('{"list": ["나이키 신상", "델 노트북 신종  64G", "다이슨 청소기"], "No": [ "5622554511" , "1222554511" , "97822554511"],"status": [ "배송출발하였습니다.", "집앞에 있습니다.", "통관중중입중입닏중입니다"]}')
+                                    source: 'api-ai-webhook'
                                 });
                                 
                             } else {
