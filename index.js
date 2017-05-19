@@ -46,11 +46,7 @@ restService.post('/hook', function (req, res) {
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
                                     source: 'api-ai-webhook',
-                                    data: JSON.parse('{"list": [' +
-                                              +'{"itemName": "델 노트북 신종  64G","No": 697796554511,"status": "배송출발하였습니다."},'+
-                                              +'{"itemName": "Galaxy 8 무약정","No": 697796552311,"status": "입고되었습니다."},'+
-                                              +'{"itemName": "iPad Air2 32G","No": 6977963233254511,"status": "반송 접수 되었습니다."}'+
-                                              +']}')
+                                    data: JSON.parse('{"list": [{"itemName": "델 노트북 신종  64G","No": 697796554511,"status": "배송출발하였습니다."}]}')
                                 });
                                 
                             } else {
