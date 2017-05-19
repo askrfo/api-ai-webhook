@@ -44,8 +44,9 @@ restService.post('/hook', function (req, res) {
                             if (dataDelivery) {
                                 return res.json({
                                     speech: '원하시는 상품을 선택해 주세요',
-                                    displayText: ' ',
-                                    source: 'api-ai-webhook'
+                                    displayText: '',
+                                    source: 'api-ai-webhook',
+                                    data2: {data3, dataDelivery}
                                 });
                                 
                             } else {
