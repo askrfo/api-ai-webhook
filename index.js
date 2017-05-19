@@ -46,7 +46,6 @@ restService.post('/hook', function (req, res) {
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
                                     source: 'api-ai-webhook',
-                                    //data: eval(dataDelivery)
                                     resJson: eval(dataDelivery)
                                 });
                                 
