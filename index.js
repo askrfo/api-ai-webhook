@@ -46,7 +46,7 @@ restService.post('/hook', function (req, res) {
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
                                     source: 'api-ai-webhook',
-                                    data: JSON.parse('{ "itemName":"Dell Note Book", "No":697796554511, "status":"Sending"}')
+                                    data: JSON.parse('{"itemName":"Dell Note Book", "No":697796554511, "status":"Sending"}')
                                 });
                                 
                             } else {
