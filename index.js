@@ -47,7 +47,7 @@ restService.post('/hook', function (req, res) {
                                     displayText: '',
                                     source: 'api-ai-webhook',
                                     //data: eval(dataDelivery)
-                                    resJson: dataDelivery
+                                    resJson: eval(dataDelivery)
                                 });
                                 
                             } else {
