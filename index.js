@@ -64,7 +64,7 @@ restService.post('/hook', function (req, res) {
                                     speech: '원하시는 상품을 선택해 주세요',
                                     displayText: '',
                                     source: 'api-ai-webhook',
-                                    data: JSON.parse('{"list1": [{"itemName": "델 노트북 신종  64G", "No": 697796554511,"status": "배송출발하였습니다."}] ,"list2": [{"itemName": "델 노트북 신종  64G","No": 697796554511,"status": "배송출발하였습니다."}] ,"list3": [{"itemName": "델 노트북 신종  64G","No": 697796554511,"status": "배송출발하였습니다."}]}')
+                                    data: JSON.parse('{"list1": [{"itemName": "델 노트북 신종  64G", "No": 697796554511,"status": "배송출발하였습니다."}] ,"list2": [{"itemName": "커피사줘~","No": 697796554517,"status": "배송준비중."}] ,"list3": [{"itemName": "삼성 기어3","No": 697796554519,"status": "결제완료."}]}')
                                 });
                     
                     
